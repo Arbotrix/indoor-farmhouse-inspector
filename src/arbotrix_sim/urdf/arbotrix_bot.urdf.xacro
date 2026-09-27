@@ -1,0 +1,672 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arbotrix_bot">
+
+  <!-- ========================= -->
+  <!-- Properties -->
+  <!-- ========================= -->
+
+  <xacro:property name="base_size" value="0.90"/>
+  <xacro:property name="base_length" value="0.12"/>
+
+  <xacro:property name="wheel_radius" value="0.05"/>
+  <xacro:property name="wheel_width" value="0.03"/>
+  <xacro:property name="wheel_separation" value="0.30"/>
+
+  <xacro:property name="y_reflect" value="1"/>
+
+  <!-- ========================= -->
+  <!-- Materials -->
+  <!-- ========================= -->
+
+  <material name="dark_green">
+    <color rgba="0.05 0.45 0.15 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0.1 0.1 0.1 1"/>
+  </material>
+
+  <material name="yellow">
+    <color rgba="0.9 0.75 0.05 1"/>
+  </material>
+
+  <material name="lidar_blue">
+    <color rgba="0.05 0.3 0.9 1"/>
+  </material>
+
+  <material name="tank_blue">
+    <color rgba="0.05 0.45 0.75 0.85"/>
+  </material>
+
+  <material name="water_blue">
+    <color rgba="0.05 0.65 1.0 0.65"/>
+  </material>
+
+  <material name="pump_black">
+    <color rgba="0.08 0.08 0.08 1"/>
+  </material>
+
+  <material name="indicator_green">
+    <color rgba="0.1 0.9 0.1 1"/>
+  </material>
+
+  <material name="metal">
+    <color rgba="0.35 0.35 0.38 1"/>
+  </material>
+
+  <material name="dark_metal">
+    <color rgba="0.12 0.12 0.12 1"/>
+  </material>
+
+
+  <!-- ========================= -->
+  <!-- Base Footprint -->
+  <!-- ========================= -->
+
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.07" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- Main Robot Body -->
+  <!-- ========================= -->
+
+  <link name="base_link">
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${base_size} ${base_size} ${base_length}"/>
+      </geometry>
+      <material name="dark_green"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${base_size} ${base_size} ${base_length}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="10.0"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.70"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.70"
+        iyz="0.0"
+        izz="0.70"/>
+    </inertial>
+
+  </link>
+
+
+  <!-- ========================= -->
+  <!-- WATER TANK -->
+  <!-- ========================= -->
+
+  <link name="water_tank_link">
+
+    <visual>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.45 0.45 0.30"/>
+      </geometry>
+      <material name="tank_blue"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.000001"
+        ixy="0"
+        ixz="0"
+        iyy="0.000001"
+        iyz="0"
+        izz="0.000001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="water_tank_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="water_tank_link"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- WATER LEVEL -->
+  <!-- ========================= -->
+
+  <link name="water_level_link">
+
+    <visual>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.46 0.46 0.12"/>
+      </geometry>
+      <material name="water_blue"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.000001"
+        ixy="0"
+        ixz="0"
+        iyy="0.000001"
+        iyz="0"
+        izz="0.000001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="water_level_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="water_level_link"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- PUMP HOUSING -->
+  <!-- ========================= -->
+
+  <link name="water_pump_link">
+
+    <visual>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.08" length="0.12"/>
+      </geometry>
+      <material name="pump_black"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.000001"
+        ixy="0"
+        ixz="0"
+        iyy="0.000001"
+        iyz="0"
+        izz="0.000001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="water_pump_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="water_pump_link"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- PUMP INDICATOR -->
+  <!-- ========================= -->
+
+  <link name="pump_indicator_link">
+
+    <visual>
+      <origin xyz="0 0 0.23" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.035"/>
+      </geometry>
+      <material name="indicator_green"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.000001"
+        ixy="0"
+        ixz="0"
+        iyy="0.000001"
+        iyz="0"
+        izz="0.000001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="pump_indicator_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="pump_indicator_link"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- SPRAY NOZZLE -->
+  <!-- ========================= -->
+
+  <link name="spray_nozzle_link">
+
+    <visual>
+      <origin xyz="0.30 0 0.18" rpy="0 1.5708 0"/>
+      <geometry>
+        <cylinder radius="0.035" length="0.20"/>
+      </geometry>
+      <material name="metal"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.000001"
+        ixy="0"
+        ixz="0"
+        iyy="0.000001"
+        iyz="0"
+        izz="0.000001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="spray_nozzle_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="spray_nozzle_link"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- NOZZLE TIP -->
+  <!-- ========================= -->
+
+  <link name="nozzle_tip_link">
+
+    <visual>
+      <origin xyz="0.41 0 0.18" rpy="0 1.5708 0"/>
+      <geometry>
+        <sphere radius="0.045"/>
+      </geometry>
+      <material name="dark_metal"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.0001"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.000001"
+        ixy="0"
+        ixz="0"
+        iyy="0.000001"
+        iyz="0"
+        izz="0.000001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="nozzle_tip_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="nozzle_tip_link"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- LEFT WHEEL -->
+  <!-- ========================= -->
+
+  <link name="left_wheel_link">
+
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.5"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel_link"/>
+    <origin xyz="0 ${y_reflect * wheel_separation / 2} -0.02" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- RIGHT WHEEL -->
+  <!-- ========================= -->
+
+  <link name="right_wheel_link">
+
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.5"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel_link"/>
+    <origin xyz="0 ${-y_reflect * wheel_separation / 2} -0.02" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- CASTER -->
+  <!-- ========================= -->
+
+  <link name="caster_wheel_link">
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.025"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.025"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.0001"
+        ixy="0"
+        ixz="0"
+        iyy="0.0001"
+        iyz="0"
+        izz="0.0001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="caster_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_wheel_link"/>
+    <origin xyz="0.15 0 -0.045" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- UPPER DECK -->
+  <!-- ========================= -->
+
+  <link name="upper_deck">
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.70 0.70 0.05"/>
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.5"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.02"
+        ixy="0"
+        ixz="0"
+        iyy="0.02"
+        iyz="0"
+        izz="0.02"/>
+    </inertial>
+
+  </link>
+
+  <joint name="upper_deck_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="upper_deck"/>
+    <origin xyz="0 0 0.15" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- LIDAR -->
+  <!-- ========================= -->
+
+  <link name="lidar_link">
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.07" length="0.05"/>
+      </geometry>
+      <material name="lidar_blue"/>
+    </visual>
+
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia
+        ixx="0.0001"
+        ixy="0"
+        ixz="0"
+        iyy="0.0001"
+        iyz="0"
+        izz="0.0001"/>
+    </inertial>
+
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+    <origin xyz="0 0 0.22" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- GAZEBO MATERIAL OVERRIDES -->
+  <!-- ========================= -->
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="left_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="right_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="caster_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="upper_deck">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="lidar_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="water_tank_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="water_level_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="water_pump_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="pump_indicator_link">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="spray_nozzle_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="nozzle_tip_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+
+  <!-- ========================= -->
+  <!-- DIFFERENTIAL DRIVE -->
+  <!-- ========================= -->
+
+  <gazebo>
+
+    <plugin name="diff_drive"
+            filename="libgazebo_ros_diff_drive.so">
+
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+
+      <update_rate>30</update_rate>
+
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+
+      <wheel_separation>0.30</wheel_separation>
+      <wheel_diameter>0.10</wheel_diameter>
+
+      <max_wheel_torque>20</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
+
+      <command_topic>cmd_vel</command_topic>
+
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+
+      <odometry_topic>odom</odometry_topic>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_footprint</robot_base_frame>
+
+    </plugin>
+
+  </gazebo>
+
+
+  <!-- ========================= -->
+  <!-- PUMP PLUGIN -->
+  <!-- ========================= -->
+
+  <gazebo>
+
+    <plugin name="pump_plugin"
+            filename="libpump_plugin.so"/>
+
+  </gazebo>
+
+
+  <!-- ========================= -->
+  <!-- LIDAR SENSOR -->
+  <!-- ========================= -->
+
+  <gazebo reference="lidar_link">
+
+    <sensor name="lidar_sensor" type="ray">
+
+      <visualize>false</visualize>
+      <always_on>true</always_on>
+      <update_rate>10</update_rate>
+
+      <ray>
+
+        <scan>
+
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+
+        </scan>
+
+        <range>
+          <min>0.12</min>
+          <max>10.0</max>
+          <resolution>0.01</resolution>
+        </range>
+
+      </ray>
+
+      <plugin name="gazebo_ros_laser"
+              filename="libgazebo_ros_ray_sensor.so">
+
+        <ros>
+          <remapping>~/out:=/scan</remapping>
+        </ros>
+
+        <output_type>sensor_msgs/LaserScan</output_type>
+
+      </plugin>
+
+    </sensor>
+
+  </gazebo>
+
+
+</robot>

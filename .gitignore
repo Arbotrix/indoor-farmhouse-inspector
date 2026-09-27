@@ -1,0 +1,11 @@
+build/
+install/
+log/
+__pycache__/
+*.pyc
+src/day3_pubsub/
+src/day3_task1/
+src/day3_task2/
+src/day4_turtlesim/
+src/day6_launchers/
+src/day7_tf2/

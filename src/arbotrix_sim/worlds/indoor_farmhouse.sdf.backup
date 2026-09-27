@@ -1,0 +1,660 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="indoor_farmhouse">
+
+    <!-- ========================= -->
+    <!-- LIGHTING -->
+    <!-- ========================= -->
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+
+    <!-- ========================= -->
+    <!-- GROUND -->
+    <!-- ========================= -->
+
+    <model name="floor">
+      <static>true</static>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>30 24 0.1</size>
+            </box>
+          </geometry>
+          <pose>0 0 -0.05 0 0 0</pose>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>30 24 0.1</size>
+            </box>
+          </geometry>
+          <pose>0 0 -0.05 0 0 0</pose>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- OUTER WALLS -->
+    <!-- ========================= -->
+
+    <!-- North wall -->
+    <model name="outer_wall_north">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>30 0.2 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>30 0.2 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <pose>0 12 1.25 0 0 0</pose>
+    </model>
+
+    <!-- South wall -->
+    <model name="outer_wall_south">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>30 0.2 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>30 0.2 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <pose>0 -12 1.25 0 0 0</pose>
+    </model>
+
+    <!-- West wall -->
+    <model name="outer_wall_west">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 24 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 24 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <pose>-15 0 1.25 0 0 0</pose>
+    </model>
+
+    <!-- East wall -->
+    <model name="outer_wall_east">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 24 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 24 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <pose>15 0 1.25 0 0 0</pose>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- ROOM B - LEFT -->
+    <!-- ========================= -->
+
+    <!-- Back wall -->
+    <model name="room_b_back">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10 0.2 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10 0.2 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+
+      <pose>-8.5 7 1.25 0 0 0</pose>
+    </model>
+
+    <!-- Left wall -->
+    <model name="room_b_left">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 9 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 9 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+
+      <pose>-13.5 2.5 1.25 0 0 0</pose>
+    </model>
+
+    <!-- Right wall -->
+    <model name="room_b_right">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 9 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 9 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+
+      <pose>-3.5 2.5 1.25 0 0 0</pose>
+    </model>
+
+    <!-- Room B entrance wall -->
+    <model name="room_b_entrance_wall">
+      <static>true</static>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>5 0.2 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>5 0.2 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+
+      <pose>-11 -2 1.25 0 0 0</pose>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- ROOM A - RIGHT -->
+    <!-- ========================= -->
+
+    <!-- Back wall -->
+    <model name="room_a_back">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10 0.2 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10 0.2 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+
+      <pose>8.5 7 1.25 0 0 0</pose>
+    </model>
+
+    <!-- Left wall -->
+    <model name="room_a_left">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 9 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 9 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+
+      <pose>3.5 2.5 1.25 0 0 0</pose>
+    </model>
+
+    <!-- Right wall -->
+    <model name="room_a_right">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 9 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 9 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+
+      <pose>13.5 2.5 1.25 0 0 0</pose>
+    </model>
+
+    <!-- Room A entrance wall -->
+    <model name="room_a_entrance_wall">
+      <static>true</static>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>5 0.2 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>5 0.2 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+
+      <pose>11 -2 1.25 0 0 0</pose>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- HOME / SPAWN BAY -->
+    <!-- ========================= -->
+
+    <!-- Home back wall -->
+    <model name="home_back_wall">
+      <static>true</static>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3 0.2 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3 0.2 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+
+      <pose>0 11.5 1.25 0 0 0</pose>
+    </model>
+
+    <!-- Home left wall -->
+    <model name="home_left_wall">
+      <static>true</static>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 3 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 3 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+
+      <pose>-1.5 10 1.25 0 0 0</pose>
+    </model>
+
+    <!-- Home right wall -->
+    <model name="home_right_wall">
+      <static>true</static>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 3 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 3 2.5</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+
+      <pose>1.5 10 1.25 0 0 0</pose>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- ROOM A SENSOR STATION -->
+    <!-- ========================= -->
+
+    <!--
+      Fixed environmental sensor for Room A.
+      This is visual only and has NO collision.
+      Later the ROS 2 inspection system will provide:
+        /room_a/temperature
+        /room_a/humidity
+    -->
+
+    <model name="room_a_sensor">
+      <static>true</static>
+
+      <link name="link">
+
+        <visual name="sensor_body">
+          <geometry>
+            <box>
+              <size>0.45 0.15 0.55</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.1 0.7 0.8 1</ambient>
+            <diffuse>0.1 0.7 0.8 1</diffuse>
+          </material>
+        </visual>
+
+        <visual name="sensor_indicator">
+          <pose>0 0.081 0.08 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.06</radius>
+            </sphere>
+          </geometry>
+
+          <material>
+            <ambient>0.1 1 0.1 1</ambient>
+            <diffuse>0.1 1 0.1 1</diffuse>
+            <emissive>0.1 0.5 0.1 1</emissive>
+          </material>
+        </visual>
+
+      </link>
+
+      <pose>8.5 6.82 1.25 0 0 0</pose>
+
+      <plugin name="room_a_environmental_sensor" filename="libenvironmental_sensor_plugin.so">
+        <temperature>24.0</temperature>
+        <humidity>35.0</humidity>
+      </plugin>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- ROOM B SENSOR STATION -->
+    <!-- ========================= -->
+
+    <!--
+      Fixed environmental sensor for Room B.
+      This is visual only and has NO collision.
+      Later the ROS 2 inspection system will provide:
+        /room_b/temperature
+        /room_b/humidity
+    -->
+
+    <model name="room_b_sensor">
+      <static>true</static>
+
+      <link name="link">
+
+        <visual name="sensor_body">
+          <geometry>
+            <box>
+              <size>0.45 0.15 0.55</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.1 0.7 0.8 1</ambient>
+            <diffuse>0.1 0.7 0.8 1</diffuse>
+          </material>
+        </visual>
+
+        <visual name="sensor_indicator">
+          <pose>0 0.081 0.08 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.06</radius>
+            </sphere>
+          </geometry>
+
+          <material>
+            <ambient>0.1 1 0.1 1</ambient>
+            <diffuse>0.1 1 0.1 1</diffuse>
+            <emissive>0.1 0.5 0.1 1</emissive>
+          </material>
+        </visual>
+
+      </link>
+
+      <pose>-8.5 6.82 1.25 0 0 0</pose>
+
+      <plugin name="room_b_environmental_sensor" filename="libenvironmental_sensor_plugin.so">
+        <temperature>15.0</temperature>
+        <humidity>50.0</humidity>
+      </plugin>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- OBSTACLE 1 -->
+    <!-- ========================= -->
+
+    <model name="obstacle_1">
+      <static>true</static>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 1.5 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 1.5 1.0</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.8 0.1 0.1 1</ambient>
+            <diffuse>0.8 0.1 0.1 1</diffuse>
+          </material>
+
+        </visual>
+
+      </link>
+
+      <pose>-7 -0.5 0.5 0 0 0</pose>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- OBSTACLE 2 -->
+    <!-- ========================= -->
+
+    <model name="obstacle_2">
+      <static>true</static>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.6 1.2 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.6 1.2 1.0</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.9 0.4 0.05 1</ambient>
+            <diffuse>0.9 0.4 0.05 1</diffuse>
+          </material>
+
+        </visual>
+
+      </link>
+
+      <pose>0 -1 0.5 0 0 0</pose>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- OBSTACLE 3 -->
+    <!-- ========================= -->
+
+    <model name="obstacle_3">
+      <static>true</static>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 1.2 0.8</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 1.2 0.8</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.6 0.1 0.8 1</ambient>
+            <diffuse>0.6 0.1 0.8 1</diffuse>
+          </material>
+
+        </visual>
+
+      </link>
+
+      <pose>-5 -6.5 0.4 0 0 0</pose>
+    </model>
+
+
+    <!-- ========================= -->
+    <!-- PHYSICS -->
+    <!-- ========================= -->
+
+    <physics type="ode">
+      <real_time_update_rate>1000</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+    </physics>
+
+  </world>
+</sdf>
